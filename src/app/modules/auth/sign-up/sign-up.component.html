@@ -35,13 +35,25 @@
 
                 <!-- Name field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
+                    <mat-label>Name</mat-label>
                     <input
                         id="name"
                         matInput
                         [formControlName]="'name'">
                     <mat-error *ngIf="signUpForm.get('name').hasError('required')">
-                        Full name is required
+                        Name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Lastname field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Lastname</mat-label>
+                    <input
+                        id="lastname"
+                        matInput
+                        [formControlName]="'lastname'">
+                    <mat-error *ngIf="signUpForm.get('lastname').hasError('required')">
+                        Lastname is required
                     </mat-error>
                 </mat-form-field>
 
@@ -57,6 +69,36 @@
                     </mat-error>
                     <mat-error *ngIf="signUpForm.get('email').hasError('email')">
                         Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Phone field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Phone</mat-label>
+                    <input
+                        id="phone"
+                        matInput
+                        [formControlName]="'phone'">
+                    <mat-error *ngIf="signUpForm.get('phone').hasError('required')">
+                        Phone is required
+                    </mat-error>
+                    <mat-error *ngIf="signUpForm.get('phone').hasError('phone')">
+                        Please enter a valid phone
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Language field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Language</mat-label>
+                    <mat-select [formControlName]="'language'">
+                        <mat-option value="es">Spanish</mat-option>
+                        <mat-option value="en">English</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="signUpForm.get('language').hasError('required')">
+                        Language is required
+                    </mat-error>
+                    <mat-error *ngIf="signUpForm.get('language').hasError('language')">
+                        Please enter a valid Language
                     </mat-error>
                 </mat-form-field>
 
@@ -88,13 +130,32 @@
                     </mat-error>
                 </mat-form-field>
 
-                <!-- Company field -->
+                <!-- Password Confirmation field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Company</mat-label>
+                    <mat-label>Password Confirmation</mat-label>
                     <input
-                        id="company-confirm"
+                        id="password_confirmation"
                         matInput
-                        [formControlName]="'company'">
+                        type="password"
+                        [formControlName]="'password_confirmation'"
+                        #passwordConfirmationField>
+                    <button
+                        mat-icon-button
+                        type="button"
+                        (click)="passwordConfirmationField.type === 'password' ? passwordConfirmationField.type = 'text' : passwordConfirmationField.type = 'password'"
+                        matSuffix>
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="passwordConfirmationField.type === 'password'"
+                            [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="passwordConfirmationField.type === 'text'"
+                            [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                    </button>
+                    <mat-error>
+                        Password Confirmation is required
+                    </mat-error>
                 </mat-form-field>
 
                 <!-- ToS and PP -->
@@ -135,6 +196,38 @@
             </form>
         </div>
     </div>
+
+    <!-- <div class="container">
+        <h5>Form valid</h5> <br>
+        {{ signUpForm.valid }}
+        <hr>
+
+        <h5>Name</h5>
+        {{ signUpForm.controls['name'].valid }} <br>
+
+        <h5>Lastame</h5>
+        {{ signUpForm.controls['lastname'].valid }} <br>
+
+        <h5>Email</h5>
+        {{ signUpForm.controls['email'].valid }} <br>
+
+        <h5>Phone</h5>
+        {{ signUpForm.controls['phone'].valid }} <br>
+
+        <h5>Password</h5>
+        {{ signUpForm.controls['password'].valid }} <br>
+
+        <h5>Password Confirmed</h5>
+        {{ signUpForm.controls['password_confirmation'].valid }} <br>
+
+        <h5>T&A</h5>
+        {{ signUpForm.controls['agreements'].valid }} <br>
+
+        <hr>
+        <h5>Values</h5>
+        {{ signUpForm.value | json }}
+    </div> -->
+
     <div class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-28 overflow-hidden bg-gray-800 dark:border-l">
         <!-- Background - @formatter:off -->
         <!-- Rings -->
