@@ -8,7 +8,7 @@
             *ngIf="showAvatar && user.avatar"
             [src]="user.avatar">
         <mat-icon
-            *ngIf="!showAvatar || !user.avatar"
+            *ngIf="!showAvatar || !user.avatar || ''"
             [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
         <span
             class="absolute right-0 bottom-0 w-2 h-2 rounded-full"

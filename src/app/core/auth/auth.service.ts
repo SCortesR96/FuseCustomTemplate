@@ -104,6 +104,7 @@ export class AuthService {
             name: 'Sergio',
             lastname: 'Cortés',
             phone: '3004349323',
+            avatar: '',
             language: 'es',
             email: 'scortesr96@gmail.com',
             blocked: 0,
@@ -169,7 +170,10 @@ export class AuthService {
         password: string;
         company: string;
     }): Observable<any> {
-        return this._httpClient.post('api/auth/sign-up', user);
+        return this._httpClient.post(
+            this._appRoutesService.auth.register,
+            user
+        );
     }
 
     /**
